@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions >
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -19,6 +20,8 @@
 
         <Button Content="Отделы" Click="OnBtnClick_Departaments"/>
         <Button Grid.Column="1" Content="Сотрудники" Click="OnBtnClick_Employees" />
+        <!--<Button Grid.Column="2" Content="Загрузить" Click="OnBtnClick_Import" />-->
+        <Button Grid.Column="3" Content="Выгрузить" Click="OnBtnClick_Export" />
 
         <Frame Grid.ColumnSpan="3" Grid.Row="1" Name="f_Content" NavigationUIVisibility="Hidden"/>
 

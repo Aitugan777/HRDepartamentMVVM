@@ -1,4 +1,7 @@
 ﻿using HRDepartamentMVVM.Models;
+using HRDepartamentMVVM.ViewModels;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,25 +15,47 @@ namespace HRDepartamentMVVM.Data
 {
     public static class DBManager
     {
-        /*
-        public static void ExportDepartaments(string path)
+        public static string GetOpenFilePath()
         {
-            PortDateBase portDateBase = new PortDateBase();
-            portDateBase.Departaments = DateBase.Departaments;
-            portDateBase.Employees = DateBase.Employees;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "JSON Files (*.json)|*.json";
 
-            string jsonString = JsonSerializer.Serialize(DateBase.Departaments);
-            File.WriteAllText(path, jsonString);
-
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
-        public static void ImportDepartaments(string path)
+        public static string GetSaveFilePath()
         {
-            string jsonString = File.ReadAllText(path);
-            PortDateBase portDateBase = JsonSerializer.Deserialize<PortDateBase>(jsonString);
-            DateBase.Departaments = portDateBase.Departaments;
-            DateBase.Employees = portDateBase.Employees;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JSON Files (*.json)|*.json";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                return saveFileDialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
-        */
+
+        public static void Export()
+        {
+            string jsonString = JsonConvert.SerializeObject(Data.DataBase, Formatting.Indented);
+            File.WriteAllText(GetSaveFilePath(), jsonString);
+        }
+
+        public static void Import()
+        {
+            string jsonString = File.ReadAllText(GetOpenFilePath());
+            DataBase dataBaseJson = JsonConvert.DeserializeObject<DataBase>(jsonString);
+            Data.DataBase = dataBaseJson;
+        }
     }
 }

@@ -84,7 +84,7 @@
 
                 <TextBlock VerticalAlignment="Bottom" Text="Кабинеты" />
 
-                <ListBox Grid.Row="1" x:Name="lb_Cabinets" ItemsSource="{Binding Cabinets, UpdateSourceTrigger=PropertyChanged}"/>
+                <ListBox Grid.Row="1" x:Name="lb_Cabinets" DataContext="{Binding SelectedDepartament}" ItemsSource="{Binding Cabinets}"/>
             </Grid>
             
 
@@ -96,8 +96,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding AddCabinet, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=tbx_Cabinet,Path=Text}">Добавить кабинет</Button>
-                <Button Grid.Column="1" Command="{Binding RemoveCabinet, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=lb_Cabinets,Path=SelectedItem}">Удалить кабинет</Button>
+                <Button Command="{Binding AddCabinet}" CommandParameter="{Binding ElementName=tbx_Cabinet,Path=Text}">Добавить кабинет</Button>
+                <Button Grid.Column="1" Command="{Binding RemoveCabinet}" CommandParameter="{Binding ElementName=lb_Cabinets,Path=SelectedItem}">Удалить кабинет</Button>
             </Grid>
         </Grid>
     </Grid>

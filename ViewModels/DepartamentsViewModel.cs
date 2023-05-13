@@ -17,19 +17,18 @@ namespace HRDepartamentMVVM.ViewModels
     {
         public DepartamentsViewModel()
         {
-            DateBase.Departaments = new ObservableCollection<Departament>
+            Data.Data.DataBase.Departaments = new ObservableCollection<Departament>
             {
-                new Departament () {Name = "Developers", Cabinets = new List<int>() {13, 2 } },
-                new Departament () {Name = "Analitics", Cabinets = new List<int>() {10, 3, 3 } },
+                new Departament () {Name = "Developers", Cabinets = new ObservableCollection<int>() {13, 2 } },
+                new Departament () {Name = "Analitics", Cabinets = new ObservableCollection<int>() {10, 3, 3 } },
             };
         }
-
 
         public ObservableCollection<Departament> Departaments
         {
             get
             {
-                return DateBase.Departaments;
+                return Data.Data.DataBase.Departaments;
             }
         }
 
@@ -43,7 +42,6 @@ namespace HRDepartamentMVVM.ViewModels
             {
                 selectedDepartament = value;
                 OnPropertyChanged("SelectedDepartament");
-                OnPropertyChanged("Cabinets");
             }
         }
 
@@ -55,8 +53,8 @@ namespace HRDepartamentMVVM.ViewModels
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      Departament departament = new Departament() { Name = "Новый отдел"};
-                      DateBase.Departaments.Add(departament);
+                      Departament departament = new Departament() { Name = "Новый отдел", Cabinets = new ObservableCollection<int>()};
+                      Data.Data.DataBase.Departaments.Add(departament);
                       SelectedDepartament = departament;
                   }));
             }
@@ -73,10 +71,41 @@ namespace HRDepartamentMVVM.ViewModels
                       Departament departament = obj as Departament;
                       if (departament != null)
                       {
-                          DateBase.Departaments.Remove(departament);
+                          Data.Data.DataBase.Departaments.Remove(departament);
                       }
                   },
                  (obj) => SelectedDepartament != null));
+            }
+        }
+
+
+        private RelayCommand addCabinet;
+        public RelayCommand AddCabinet
+        {
+            get
+            {
+                int cabinet = 0;
+                return addCabinet ??
+                  (addCabinet = new RelayCommand(obj =>
+                  {
+                      SelectedDepartament.Cabinets.Add(cabinet);
+                      OnPropertyChanged("Departaments");
+                  },
+                  (obj) => int.TryParse(obj.ToString(), out cabinet) && SelectedDepartament != null));
+            }
+        }
+
+        private RelayCommand removeCabinet;
+        public RelayCommand RemoveCabinet
+        {
+            get
+            {
+                return removeCabinet ??
+                  (removeCabinet = new RelayCommand(obj =>
+                  {
+                      SelectedDepartament.Cabinets.Remove(int.Parse(obj.ToString()));
+                  },
+                 (obj) => obj != null && SelectedDepartament != null));
             }
         }
 

@@ -23,8 +23,8 @@ namespace HRDepartamentMVVM.Models
             }
         }
 
-        private List<int> cabinets;
-        public List<int> Cabinets
+        private ObservableCollection<int> cabinets;
+        public ObservableCollection<int> Cabinets
         {
             get { return cabinets; }
             set
@@ -40,7 +40,7 @@ namespace HRDepartamentMVVM.Models
         private ObservableCollection<Employee> GetEmployees()
         {
             ObservableCollection<Employee> list = new ObservableCollection<Employee>();
-            foreach (Employee employee in DateBase.Employees)
+            foreach (Employee employee in Data.Data.DataBase.Employees)
             {
                 if (employee.Departament == this.Name)
                     list.Add(employee);

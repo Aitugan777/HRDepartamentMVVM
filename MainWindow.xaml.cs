@@ -1,4 +1,5 @@
-﻿using HRDepartamentMVVM.Views;
+﻿using HRDepartamentMVVM.Data;
+using HRDepartamentMVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace HRDepartamentMVVM
         public MainWindow()
         {
             InitializeComponent();
-            f_Content.Content = new DepartamentsPage();
+            f_Content.Content = departamentsPage;
         }
 
-        DepartamentsPage departamentsPage = new DepartamentsPage();
+        public DepartamentsPage departamentsPage = new DepartamentsPage();
 
         EmployeesPage employeesPage = new EmployeesPage();
 
@@ -41,5 +42,14 @@ namespace HRDepartamentMVVM
             f_Content.Content = departamentsPage;
         }
 
+        private void OnBtnClick_Import(object sender, RoutedEventArgs e)
+        {
+            DBManager.Import();
+        }
+
+        private void OnBtnClick_Export(object sender, RoutedEventArgs e)
+        {
+            DBManager.Export();
+        }
     }
 }

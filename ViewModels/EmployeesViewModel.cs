@@ -1,5 +1,4 @@
 ﻿using HRDepartamentMVVM.Commands;
-using HRDepartamentMVVM.Data;
 using HRDepartamentMVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace HRDepartamentMVVM.ViewModels
     {
         public EmployeesViewModel()
         {
-            DateBase.Employees = new ObservableCollection<Employee>
+            Data.Data.DataBase.Employees = new ObservableCollection<Employee>
             {
                 new Employee() {FirstName = "Aitugan", LastName = "Irgalin", Position = "Middle", Salary = 90000, Departament = "Developers" },
                 new Employee() {FirstName = "Andrey", LastName = "Timofeev", Position = "Middle", Salary = 80000, Departament = "Analitics" }
@@ -28,7 +27,7 @@ namespace HRDepartamentMVVM.ViewModels
         public ObservableCollection<Employee> Employees { 
             get
             {
-                return DateBase.Employees;
+                return Data.Data.DataBase.Employees;
             }
         }
 
@@ -51,7 +50,7 @@ namespace HRDepartamentMVVM.ViewModels
                   (addEmployee = new RelayCommand(obj =>
                   {
                       Employee employee = new Employee();
-                      DateBase.Employees.Add(employee);
+                      Data.Data.DataBase.Employees.Add(employee);
                       SelectedEmployee = employee;
                   }));
             }
@@ -68,7 +67,7 @@ namespace HRDepartamentMVVM.ViewModels
                       Employee employee = obj as Employee;
                       if (employee != null)
                       {
-                          DateBase.Employees.Remove(employee);
+                          Data.Data.DataBase.Employees.Remove(employee);
                       }
                   },
                  (obj) => obj != null));

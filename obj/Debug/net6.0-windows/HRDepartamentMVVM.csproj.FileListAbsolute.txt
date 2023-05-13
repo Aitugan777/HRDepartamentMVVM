@@ -23,3 +23,5 @@ C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\obj\Debug\net6.
 C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\obj\Debug\net6.0-windows\HRDepartamentMVVM.pdb
 C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\obj\Debug\net6.0-windows\HRDepartamentMVVM.genruntimeconfig.cache
 C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\obj\Debug\net6.0-windows\ref\HRDepartamentMVVM.dll
+C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\aitug\Desktop\C#\Development\Programs\HRDepartamentMVVM\obj\Debug\net6.0-windows\HRDepartamentMVVM.csproj.CopyComplete
